@@ -10,9 +10,59 @@
   </head>
 
   <body>
-    <div id="output"></div>
-    <div id="app">{{content}}</div>
+    <div id="app">
+      <div class="">
+        <div class="iconfont server">&#xe778;</div>
+        <div class="text">
+          <button 
+            ref="server" 
+            class="button"
+            @click="handleServerClick()"
+          >
+           server
+          </button>
+        </div>
+      </div>
+      <canvas ref="myCanvas" id="myCanvas" width="1000px" height="200px"></canvas>
+      <div class="target">
+        <div class="content">
+          <div class="iconfont pc1">&#xe621;</div>
+          <div class="text">
+            <button 
+              ref="button1" 
+              class="button"
+              @click="handleTargetClick(1)"
+            >
+              pc1
+            </button>
+          </div>
+        </div>
+        <div class="content">
+          <div class="iconfont pc2">&#xe621;</div>
+          <div class="text">
+            <button 
+              ref="button2" 
+              class="button"
+              @click="handleTargetClick(2)"
+            >
+              pc2
+            </button>
+          </div>
+        </div>
+        <div class="content">
+          <div class="iconfont pc3">&#xe621;</div>
+          <div class="text">
+            <button 
+              ref="button3" 
+              class="button"
+              @click="handleTargetClick(3)"
+            >
+              pc3
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
-  
   <script src="index.js"></script>
 </html>

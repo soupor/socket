@@ -1,0 +1,51 @@
+@font-face {font-family: "iconfont";
+  src: url('./icon/iconfont.eot?t=1609917159173'); /* IE9 */
+  src: url('./icon/iconfont.eot?t=1609917159173#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAL0AAsAAAAABxgAAAKlAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqBfIFiATYCJAMMCwgABCAFhG0HOhssBsiusCnDvUiJMDNQ3GMX9GuA4UaxCKL9Xmfv9kEIXaKISp7AAYCqR03gXG2VqQTS1f//1to/9VCGbiZ57c+uzzE3Zw31VEhkeB1ChErSyCMXIqX7K7LXXw+Usv/rDTxKdv9zzHQJNIz+NhvIlDOKCvcGNCugAUXEVREFyAH5DWMXuITLBIYtauQ7Nr24CVHJmhWIx6YuQzTnlZIleqGt2Zh741ajL2/LC/A5/P34pz2iFE1lLTzzaEqD0Z8NH7I72HXDR/AR4PYGFVtAErdqo1cEBMMFDEuD7ZmtFMpcgSfk6vJ2p/94hWhZ+aNgDaqLm+K5TIJfciAe9fstJoHTwPkZSkij2SSqth543Z+qV+KBkXIfkvEkmI6x5sunTohHN1PyIHKh/AUkYsxYjIfNPEgH7H5/vAmfMPujgnOrcz3PDc79lk77OL/di56Ljovei9j5gfPgwcvh+vD/MMNt9WEJM+zadBgFGPxxDf/pv7Fv5dIjM/g/KsE3Dj7CKYPdvKi76O/DFvzXiryHfM8Flq6mKtWaH6j23NbMgmHDGAB2TnsfL5/rHSb0OR6DorMAVW8JmdgtaIw4AK3eQRi2aWb7iBlcQOQQNhwBCJMeoBj3FapJr8jEvkFj3ie0JiMAwy5F4cARK2HGJzjKAjWi1ImpMo86BhGPCtdRLzsyzwpCyjbykhkgbc2txcQMesjnWFKq6O1CUEI5c8k0uA4dh5EiZxaqotkQotjf0kLrvqhZZS7EHcUhmYA0hKKOMKkYD/VbC/HSz69DujKHjLfU1Vi3Ia7E7J9o06y1B3JG6vWqu5eXlFTo2gkCRVAc4yKmgRk5dpQhivXjLEglNDNGhIv6taBGtK+0eX25+317YJh1eo0SNVL3wJQ9T2ZhWq6Wd0wAAAAA') format('woff2'),
+  url('./icon/iconfont.woff?t=1609917159173') format('woff'),
+  url('./icon/iconfont.ttf?t=1609917159173') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('./icon/iconfont.svg?t=1609917159173#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 75px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.server {
+  text-align: center;
+  /* line-height: 100px; */
+  color: #00CED1;
+}
+#myCanvas {
+  width: 100%;
+}
+.target {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+
+}
+
+.pc1 {
+  color:blue;
+}
+.pc2 {
+  color: red;
+}
+.pc3 {
+  color: green;
+}
+
+.text {
+  margin: 0 auto;
+  text-align: center;
+}
+.button {
+  font-size: 15px;
+  font-style: normal;
+}
