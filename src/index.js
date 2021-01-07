@@ -1,4 +1,8 @@
 
+function test () {
+  console.log('test')
+}
+
 let app = new Vue({
   el: '#app',
   data: {
@@ -6,6 +10,7 @@ let app = new Vue({
   },
   mounted() {
    this.initPath()
+   test()
   },
   methods: {
     initPath() {
