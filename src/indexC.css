@@ -1,0 +1,10 @@
+div {
+  position: absolute;
+  z-index:99;
+  width: 1000px;
+  height: 1000px;
+  border: 2px solid #00FFD1;
+}
+canvas {
+  position: absolute;
+}
