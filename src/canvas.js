@@ -96,19 +96,20 @@ canvas.onmousedown = e => {
       // startPos.x += posMove.x - mouseStart.x 
       // startPos.y += posMove.y - mouseStart.y
     }
+    canvas.onmouseup = (e) => {
+      canvas.width = canvas.width  //刷新画布
+      let posUp = positionInCanvas(e, canvasLeft, canvasTop);
+      startPos.x += posUp.x - mouseStart.x 
+      startPos.y += posUp.y - mouseStart.y
+      console.log(`posUp.x:${posUp.x}, startPos.x:${startPos.x}`)
+      ctx.rect(startPos.x, startPos.y, 120, 150);
+      ctx.drawImage(imgArr[0], startPos.x, startPos.y, 120, 150);
+      canvas.onmousemove = null;
+      canvas.onmouseup = null;
+      return
+    };
   }
 };
-canvas.onmouseup = (e) => {
-  canvas.width = canvas.width  //刷新画布
-  let posUp = positionInCanvas(e, canvasLeft, canvasTop);
-  startPos.x += posUp.x - mouseStart.x 
-  startPos.y += posUp.y - mouseStart.y
-  console.log(`posUp.x:${posUp.x}, startPos.x:${startPos.x}`)
-  ctx.rect(startPos.x, startPos.y, 120, 150);
-  ctx.drawImage(imgArr[0], startPos.x, startPos.y, 120, 150);
-  ctx.stroke();
-  canvas.onmousemove = null;
-  canvas.onmouseup = null;
-};
+
 
     
