@@ -45,30 +45,70 @@ const canvasLeft = canvas.getBoundingClientRect().left;
 const canvasTop = canvas.getBoundingClientRect().top;
 const ctx = canvas.getContext('2d');
 
-let imgServer = new Image();
+
 let mouseStart = {  //记录鼠标点击坐标
   x: null,
   y: null
 };
-
-let startPos = {  //记录图片移动起始点 
-  x: 50,
-  y: 50
+let imgArr = [];
+let targetImg = null;  //记录正在拖拽的图片
+let targetIndex = null;  //记录正在拖拽的图片在数组的下标
+let colorType = {
+  'run': 'green',
+  'stop': 'red',
+  'trans': 'yellow'
 }
 
-let img
-let imgArr = []
-let diff
-  
-
+/***************
+ + 初始化图片
+ * *************/
+let imgServer = new Image();
 imgServer.src = './icon/server.jpg';
-imgArr.push(imgServer)
-
-
-window.onload = () => {
-  ctx.rect(startPos.x, startPos.y, 120, 150)
-  ctx.drawImage(imgArr[0], startPos.x , startPos.y, 120, 150);
+imgServer.startPos = {  //记录图片移动起始点 
+  x: 50,
+  y: 400
 };
+imgServer.size = {
+  width: 120,
+  height: 150
+};
+imgArr.push(imgServer);
+
+let imgPc1 = new Image();
+imgPc1.src = './icon/pc1.png';
+imgPc1.startPos = {
+  x: 500,
+  y: 100
+};
+imgPc1.size = {
+  width: 100,
+  height: 130
+};
+imgArr.push(imgPc1);
+
+let imgPc2 = new Image();
+imgPc2.src = './icon/pc2.jpg';
+imgPc2.startPos = {
+  x: 500,
+  y: 400
+};
+imgPc2.size = {
+  width: 120,
+  height: 130
+};
+imgArr.push(imgPc2);
+
+let imgPc3 = new Image();
+imgPc3.src = './icon/pc3.png';
+imgPc3.startPos = {
+  x: 500,
+  y: 700
+};
+imgPc3.size = {
+  width: 120,
+  height: 130
+};
+imgArr.push(imgPc3);
 
 
 function positionInCanvas(e, canvasLeft, canvasTop) {
@@ -76,39 +116,100 @@ function positionInCanvas(e, canvasLeft, canvasTop) {
       x: e.clientX - canvasLeft,
       y: e.clientY - canvasTop
   }
+};
+
+function drawLine(startImg, endImg, color) {
+  let centerStartX = startImg.startPos.x + startImg.size.width / 2
+  let centerStartY = startImg.startPos.y + startImg.size.height / 2
+  let centerEndX = endImg.startPos.x + endImg.size.width / 2
+  let centerEndY = endImg.startPos.y + endImg.size.height / 2
+
+  ctx.beginPath();
+  ctx.lineWidth = '2';
+  ctx.strokeStyle = color;
+  ctx.moveTo(centerStartX, centerStartY);
+  ctx.lineTo(centerEndX, centerEndY);
+  ctx.stroke();
 }
 
+
+
+window.onload = () => {
+  for(let i in imgArr) {
+    if (i !== 0) {
+      drawLine(imgArr[0], imgArr[i], colorType['run'])
+    }
+    ctx.drawImage(imgArr[i], imgArr[i].startPos.x , imgArr[i].startPos.y, imgArr[i].size.width, imgArr[i].size.height);
+    
+  }
+};
+
 canvas.onmousedown = e => {
+  console.log('单击')
+  
   let posStart = positionInCanvas(e, canvasLeft, canvasTop);
   //记录鼠标起始点
   mouseStart.x = posStart.x;
   mouseStart.y = posStart.y;
   console.log(`mouseStart.x:${mouseStart.x},mouseStart.y:${mouseStart.y}`);
- 
-  
-  if (ctx.isPointInPath(mouseStart.x, mouseStart.y)) {
-    console.log("a")
-    canvas.onmousemove = e => {   
-      let posMove = positionInCanvas(e, canvasLeft, canvasTop);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      console.log(`x:${startPos.x},y:${startPos.y}`);
-      ctx.drawImage(imgArr[0], startPos.x - (mouseStart.x - posMove.x), startPos.y - (mouseStart.y - posMove.y), 120, 150);
-      // startPos.x += posMove.x - mouseStart.x 
-      // startPos.y += posMove.y - mouseStart.y
+  for(let i in imgArr) {
+    ctx.rect(imgArr[i].startPos.x, imgArr[i].startPos.y, imgArr[i].size.width, imgArr[i].size.height);
+    if (ctx.isPointInPath(mouseStart.x, mouseStart.y)) {
+      console.log('enter')
+      targetImg = imgArr[i];
+      targetIndex = i;
+      console.log(targetIndex);
+      return;
     }
-    canvas.onmouseup = (e) => {
-      canvas.width = canvas.width  //刷新画布
-      let posUp = positionInCanvas(e, canvasLeft, canvasTop);
-      startPos.x += posUp.x - mouseStart.x 
-      startPos.y += posUp.y - mouseStart.y
-      console.log(`posUp.x:${posUp.x}, startPos.x:${startPos.x}`)
-      ctx.rect(startPos.x, startPos.y, 120, 150);
-      ctx.drawImage(imgArr[0], startPos.x, startPos.y, 120, 150);
-      canvas.onmousemove = null;
-      canvas.onmouseup = null;
-      return
-    };
   }
+};
+canvas.onmousemove = e => {   
+  if(targetImg !== null) {
+    let posMove = positionInCanvas(e, canvasLeft, canvasTop);
+    let diff = {
+      disX: mouseStart.x - posMove.x,
+      disY: mouseStart.y - posMove.y
+    };
+    
+    let tempStartX = targetImg.startPos.x;
+    let tempStartY = targetImg.startPos.y;
+
+    targetImg.startPos.x -= diff.disX;
+    targetImg.startPos.y -= diff.disY
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for(let i in imgArr) {
+      if (i !== 0) {
+        drawLine(imgArr[0], imgArr[i], colorType['run'])
+      }
+      ctx.drawImage(imgArr[i], imgArr[i].startPos.x , imgArr[i].startPos.y, imgArr[i].size.width, imgArr[i].size.height);
+    }
+    targetImg.startPos.x = tempStartX;
+    targetImg.startPos.y = tempStartY;
+  
+  }
+ };
+canvas.onmouseup = (e) => {
+  if(targetImg !== null) {
+    canvas.width = canvas.width  //刷新画布
+    let posUp = positionInCanvas(e, canvasLeft, canvasTop);
+    let diff = {
+      disX: mouseStart.x - posUp.x,
+      disY: mouseStart.y - posUp.y
+    }; 
+    imgArr[targetIndex].startPos.x -= diff.disX;
+    imgArr[targetIndex].startPos.y -= diff.disY;
+    targetImg = null
+    for (let i in imgArr) {
+      if (i !== 0) {
+        drawLine(imgArr[0], imgArr[i], colorType['run'])
+      }
+      ctx.drawImage(imgArr[i], imgArr[i].startPos.x , imgArr[i].startPos.y, imgArr[i].size.width, imgArr[i].size.height);
+    }
+  }
+};
+canvas.ondblclick = () => {
+  console.log('双击')
 };
 
 
