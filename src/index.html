@@ -7,63 +7,37 @@
     <script src="babel.js"></script>
     <script src="vue.js"></script>
   </head>
-
   <body>
     <div id="app">
-      <div>
-        <div class="iconfont server">&#xe778;</div>
-        <div class="text">
-          <button 
-            ref="server" 
-            class="button"
-            @click="handleServerClick()"
-          >
-           server
-          </button>
-        </div>
+      <div id="divCanvas">
+        <canvas ref="myCanvas" id="myCanvas" width="1000" height="800">您的浏览器不支持画布功能！</canvas>
       </div>
-      <canvas ref="myCanvas" id="myCanvas" width="1000px" height="200px"></canvas>
-      <div class="target">
-        <div class="content">
-          <div class="iconfont pc1">&#xe621;</div>
-          <div class="text">
-            <button 
-              ref="button1" 
-              class="button"
-              @click="handleTargetClick(1)"
-            >
-              pc1
-            </button>
-          </div>
-        </div>
-        <div class="content">
-          <div class="iconfont pc2">&#xe621;</div>
-          <div class="text">
-            <button 
-              ref="button2" 
-              class="button"
-              @click="handleTargetClick(2)"
-            >
-              pc2
-            </button>
-          </div>
-        </div>
-        <div class="content">
-          <div class="iconfont pc3">&#xe621;</div>
-          <div class="text">
-            <button 
-              ref="button3" 
-              class="button"
-              @click="handleTargetClick(3)"
-            >
-              pc3
-            </button>
-          </div>
-        </div>
+      <div id="tip1">
+        PC1: 传输中
+        <div class="triangle"></div>
       </div>
+      <div id="tip2">
+        PC2: 传输中
+        <div class="triangle"></div>
+      </div>
+      <div id="tip3">
+        PC3: 传输中
+        <div class="triangle"></div>
+      </div>
+      <button 
+        class="addNode"
+        @click="handleAddNode()"
+      >
+        新增终端
+    </button>
+      <button 
+        class="delNode"
+        @click="handleDelNode()"
+      >
+        删除终端
+    </button>
     </div>
   </body>
   <script src="canvas.js"></script>
   <script src="index.js"></script>
-  
 </html>
