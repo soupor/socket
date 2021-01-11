@@ -2,30 +2,32 @@ let app = new Vue({
   el: '#app',
   data: {
     ctx: {},
-    imgArr: [],
-    fstNodePos: {
+    imgArr: [],   //节点图片信息数组
+    contentArr: [],  //节点页面信息数组
+    fstNodePos: {    //初始节点位置
       x : 200,
       y : 400
     },
-    lastNodePos: null,
-    nodeSize: {
+    nodeSize: {    //节点图片大小
       width: 80,
       height: 80
     },
-    serverPos: {
+    serverPos: {   //节点服务器位置
       x: 430,
       y: 80
     },
-    serverSize: {
+    serverSize: {   //节点服务器大小
       width: 100,
       height: 120
     },
-    nodeUrl: './icon/pc.jpg',
-    serverUrl: './icon/server.png',
-    isReload: false
+    serverIP: '45.32.57.46',   //服务器IP地址
+    ipAdds: '111,222,333,444',   //响应式节点ip
+    nodeUrl: './icon/pc.jpg',    //节点图片url
+    serverUrl: './icon/server.png',  //服务器url
+    isReload: false      //是否刷新页面
   },
   methods: {
-    initCanvas() {
+    initHTML() {
       if(sessionStorage.imgArr) {
         let ary = JSON.parse(sessionStorage.imgArr);
         for(let i in ary) {
@@ -44,7 +46,6 @@ let app = new Vue({
       }
       const canvas = document.getElementById('myCanvas');
       this.ctx = canvas.getContext('2d');
-      console.log('imgArr+', this.imgArr)
     },
     initNode(pos, size, url) {
       let node = new Image();
@@ -59,12 +60,8 @@ let app = new Vue({
       if(this.imgArr.length == 1) {
         addPos.x = this.fstNodePos.x;
         addPos.y = this.fstNodePos.y;
-        // this.lastNodePos = addPos;
-        // sessionStorage.lastNodePos = JSON.stringify(this.lastNodePos);
       }
       else {
-        console.log('change')
-        console.log(this.imgArr[this.imgArr.length - 1])
         addPos.x = this.imgArr[this.imgArr.length - 1].startPos.x + 50;
         addPos.y = this.imgArr[this.imgArr.length - 1].startPos.y;
       }
@@ -78,7 +75,7 @@ let app = new Vue({
     }
   },
   mounted() {
-    this.initCanvas();
+    this.initHTML();
     window.onload = () => {
       for(let i in this.imgArr) {
         if (i !== 0) {

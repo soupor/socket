@@ -12,18 +12,15 @@
       <div id="divCanvas">
         <canvas ref="myCanvas" id="myCanvas" width="1000" height="800">您的浏览器不支持画布功能！</canvas>
       </div>
-      <div id="tip1">
-        PC1: 传输中
-        <div class="triangle"></div>
+      <div class="serverIP">{{serverIP}}</div>
+      <div ref="content" class="content">
+        <div class="tip" v-for="item of this.contentArr">
+          传输中
+          <div class="triangle"></div>
+        </div>
+        <div class="ipAdd">45.32.57.46</div>
       </div>
-      <div id="tip2">
-        PC2: 传输中
-        <div class="triangle"></div>
-      </div>
-      <div id="tip3">
-        PC3: 传输中
-        <div class="triangle"></div>
-      </div>
+      
       <button 
         class="addNode"
         @click="handleAddNode()"
