@@ -2,8 +2,6 @@
   position: absolute;
   width: 1000px;
   height: 800px;
-  border: 1px solid red;
-
 }
 canvas {
   position: absolute;
@@ -14,12 +12,11 @@ canvas {
 .serverIP {
   position: absolute;
   top: 80px;
-  left: 440px;
+  left: 435px;
 }
+
 .content {
   position: absolute;
-  /* top: 360px;
-  left: 175px; */
   width: 150px;
   height: 150px;
 }
@@ -53,11 +50,4 @@ canvas {
   top: 130px;
   width: 150px;
   text-align: center;
-}
-.addNode {
-  position: absolute;
-}
-.delNode {
-  position: absolute;
-  left: 80px;
 }

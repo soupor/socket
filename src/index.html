@@ -13,26 +13,18 @@
         <canvas ref="myCanvas" id="myCanvas" width="1000" height="800">您的浏览器不支持画布功能！</canvas>
       </div>
       <div class="serverIP">{{serverIP}}</div>
-      <div ref="content" class="content">
-        <div class="tip" v-for="item of this.contentArr">
-          传输中
+      <div 
+        class="content" 
+        v-for="(item, index) of this.contentArr"
+        :key="index"
+      >
+        <div class="tip">
+          {{item.status}}
           <div class="triangle"></div>
         </div>
-        <div class="ipAdd">45.32.57.46</div>
+        <div class="ipAdd">{{item.ipAdds}}</div>
       </div>
       
-      <button 
-        class="addNode"
-        @click="handleAddNode()"
-      >
-        新增终端
-    </button>
-      <button 
-        class="delNode"
-        @click="handleDelNode()"
-      >
-        删除终端
-    </button>
     </div>
   </body>
   <script src="canvas.js"></script>
