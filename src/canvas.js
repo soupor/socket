@@ -83,9 +83,10 @@ function drawLine(startImg, endImg, ctx) {
   let centerStartX = startImg.startPos.x + startImg.size.width / 2
   let centerStartY = startImg.startPos.y + startImg.size.height / 2
   let centerEndX = endImg.startPos.x + endImg.size.width / 2
-  let centerEndY = endImg.startPos.y + endImg.size.height / 2
+  let centerEndY = endImg.startPos.y 
 
   ctx.beginPath();
+  ctx.strokeStyle = '#808080';
   ctx.lineWidth = '2';
   ctx.moveTo(centerStartX, centerStartY);
   ctx.lineTo(centerEndX, centerEndY);

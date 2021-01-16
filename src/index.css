@@ -27,6 +27,7 @@ canvas {
   height: 30px;
   border: 1px none greenyellow;
   background-color: greenyellow;
+  background-color: rgba(255, 255, 255, 0.3);
   border-radius: 10px;
   padding-top: 10px;
   font-size: 15px;
@@ -35,7 +36,7 @@ canvas {
 .triangle {
   position: absolute;
   top: 35px;
-  left: 20px;
+  left: 45px;
   width: 10px;
   height: 10px;
   background-color: greenyellow;
