@@ -15,7 +15,6 @@ let httpHead = [
 ];
 let response = httpHead.join('\r\n');
 let buffHead = Buffer.from(response);
-console.log('bufHead: '+Object.prototype.toString.call(buffHead))
 
 
 let server = net.createServer(function(socket){ 
@@ -24,7 +23,6 @@ let server = net.createServer(function(socket){
   socket.on('data', function(data) {
     let url = data.toString().split('\r\n')[0].split(' ')[1];
     let urlType = data.toString().split('Sec-Fetch-Dest')[1].split(' ')[1].split('\r\n')[0];
-    console.log('urlType:' + urlType)
     let dataFile = '';
     let list = '';
     if(url == '/') {
@@ -43,8 +41,7 @@ let server = net.createServer(function(socket){
       socket.write(list);
     }
     else {
-      socket.write(response);
-      socket.write(list);
+      socket.write(buffHead);
     }
     socket.end();
     
