@@ -19,9 +19,7 @@ let app = new Vue({
       {
         ipAdds: '111.222.333.444',
         status: '离线'
-      },
-      
-      
+      },  
     ],
     contentArr: [],  //节点页面信息数组
     initPos: {
@@ -88,7 +86,7 @@ let app = new Vue({
           this.initPos.x += nodeSec - this.nodeSize.width / 2;
         }
         else {
-          this.initPos.x += nodeSec
+          this.initPos.x += nodeSec;
         }
         _thisPos = JSON.parse(JSON.stringify(this.initPos));  
         //引用类型深拷给另一个对象防止数据被覆盖
@@ -116,8 +114,8 @@ let app = new Vue({
     },
     createContent(nodePos, status, ipAdds) {
       let content = {};
-      content.top = nodePos.y - 40 + 'px'
-      content.left = nodePos.x - 25 + 'px'
+      content.top = nodePos.y - 40 + 'px';
+      content.left = nodePos.x - 25 + 'px';
       content.status = status;
       content.ipAdds = ipAdds;
       this.contentArr.push(content);
@@ -135,8 +133,6 @@ let app = new Vue({
       })
     }
   }
-  
- 
 })
 
 

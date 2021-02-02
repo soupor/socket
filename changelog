@@ -1,0 +1,14 @@
+//////////////////////////////////
+2021-2-2   modularized agent
+
+对agent通讯进行初步模块化
+添加
+  main.js
+  ./base/communication.js 
+  ./base/variable.js
+  ./business/controlChannel.js
+  ./business/dataChannel.js
+  ./business/file.js
+  ./business/handler.js
+
+//////////////////////////////////
