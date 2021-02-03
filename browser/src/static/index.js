@@ -39,8 +39,8 @@ let app = new Vue({
       height: 120
     },
     serverIP: '45.32.57.46',   //服务器IP地址
-    nodeUrl: './icon/pc.jpg',    //节点图片url
-    serverUrl: './icon/server.png',  //服务器url
+    nodeUrl: './static/icon/pc.jpg',    //节点图片url
+    serverUrl: './static/icon/server.png',  //服务器url
   },
   methods: {
     initHTML() {

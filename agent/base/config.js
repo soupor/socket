@@ -12,7 +12,7 @@ let requestHead = [
 
 
 module.exports = {
-  HOST: HOST,
-  PORT: PORT,
-  requestHead: requestHead
+  HOST,
+  PORT,
+  requestHead
 }

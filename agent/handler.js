@@ -1,5 +1,6 @@
-let controlChannel = require('./controlChannel')
-let dataChannel = require('./dataChannel')
+let controlChannel = require('./business/controlChannel')
+let dataChannel = require('./business/dataChannel')
+let response = require('./business/response')
 
 exports.reponseHandle = (data) => {   //服务器消息路由
   if (data == 'cmd_ls') {}  //查看文件目录

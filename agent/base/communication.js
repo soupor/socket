@@ -1,6 +1,6 @@
-let net = require('net');
+const net = require('net');
 
-let handler = require('../business/handler')
+let handler = require('../handler')
 
 
 exports.clientConnect = async (host, port) => {}  //连接服务器

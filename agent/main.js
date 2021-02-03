@@ -1,5 +1,5 @@
 const comm = require('./base/communication')
-const {HOST, PORT , requestHead} = require('./base/variable')
+const {HOST, PORT , requestHead} = require('./base/config')
 
 
-comm.clientSend(HOST, PORT , requestHead)
+comm.clientSend(PORT, HOST, requestHead)
