@@ -1,16 +1,14 @@
-
-# 2021-2-2   modularized agent
+# 2021-2-4   declare api
 ---
+ Declare all of the api for the server and the agent
 
-Add file
-  main.js
-  agent/base/communication.js 
-  agent/base/variable.js
-  agent/business/controlChannel.js
-  agent/business/dataChannel.js
-  agent/business/file.js
-  agent/business/handler.js
-
+Modify file
+  /server/agent/handler.js
+  /server/agent/controlChannel.js
+  /server/agent/dataChannel.js
+  /server/master/handler.js
+  /server/master/api.js
+  /server/master/static.js
 
 # 2021-2-3   modularized server and realized static
 ---
@@ -28,6 +26,20 @@ Add file
   agent/business/response.js
 
 Transfer the static file for browser to the ./browser/static
+
+
+# 2021-2-2   modularized agent
+---
+
+Add file
+  main.js
+  agent/base/communication.js 
+  agent/base/variable.js
+  agent/business/controlChannel.js
+  agent/business/dataChannel.js
+  agent/business/file.js
+  agent/business/handler.js
+
 
 
 # Changelog

@@ -3,7 +3,6 @@ exports.requestURL = (data) => { //返回请求url
   let url = ''
   if(data.toString().split('\r\n')[0].split(' ')[1]) {
     url = data.toString().split('\r\n')[0].split(' ')[1]
-    console.log('url: '+ url)
   }
   return url
 }  
