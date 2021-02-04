@@ -1,12 +1,13 @@
 let request = require('./business/request')
-let {httpHead, socketList} = require('./base/config')
+let {httpHead, socketList, delayTime} = require('./base/config')
 let api = require('./business/api')
 let static = require('./business/static')
 
-exports.requestHandler = (socket, data) => {  
+function requestHandler(socket, data) {  
  
   let url = request.requestURL(data)
   let type = request.requestTYPE(data)
+  console.log('data: ' + data.toString())
 
   if(url == '/') {      //Handle the root 
     let res = ''  
@@ -40,8 +41,17 @@ exports.requestHandler = (socket, data) => {
   if(url.indexOf('/api/browser/mkdir') > -1) {}    //Create directory   
   if(url.indexOf('/api/browser/rmdir') > -1) {}    //Delete directory 
   
-  if(url == '/api/agent') {}             //Agent connets to the server for agent initialization
+  if(url == '/api/agent') {
+    socket.write('get')
+    socket.setTimeout(60000 * delayTime, () => {
+      console.log(`客户端在${delayTime}分钟内未通信，将断开...`)
+      socket.end()
+    })
+  }             //Agent connets to the server for agent initialization
   if(url.indexOf('/api/agent/download') > -1) {}     //Agent requests to download the file
   
+}
 
+module.exports = {
+  requestHandler
 }

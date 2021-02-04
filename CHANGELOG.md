@@ -1,14 +1,26 @@
-# 2021-2-4   declare api
+# 2021-2-4   realize the communication 
 ---
- Declare all of the api for the server and the agent
+ realize the communication between the agent and server 
 
 Modify file
   /server/agent/handler.js
-  /server/agent/controlChannel.js
-  /server/agent/dataChannel.js
+  /server/agent/main.js
+  /server/agent/base/communication.js
+  /server/master/main.js
   /server/master/handler.js
-  /server/master/api.js
-  /server/master/static.js
+  /server/master/base/communication.js
+
+# 2021-2-4   declare api
+---
+ Declare all of the api for the server and the agent. 
+
+Modify file
+  /server/agent/handler.js
+  /server/agent/business/controlChannel.js
+  /server/agent/business/dataChannel.js
+  /server/master/handler.js
+  /server/master/business/api.js
+  /server/master/business/static.js
 
 # 2021-2-3   modularized server and realized static
 ---

@@ -7,7 +7,7 @@ const fs = require('fs');
  */
 exports.rootHandle = (head) => {
   head.splice(2, 0, 'Content-Type: text/html')
-  let dataFile = Buffer.from(fs.readFileSync('../browser/src/index.html'))
+  let dataFile = Buffer.from(fs.readFileSync('../../browser/src/index.html'))
   let response = head.join('\r\n')
   let buffHead = Buffer.from(response)
   let list = Buffer.concat([buffHead, dataFile])
@@ -23,7 +23,7 @@ exports.rootHandle = (head) => {
 exports.staticHandle = (type, url, head) => {
   if (type == 'js') {
     head.splice(2, 0, 'Content-Type: application/javascript')
-    let dataFile = Buffer.from(fs.readFileSync('../browser/src' + url))
+    let dataFile = Buffer.from(fs.readFileSync('../../browser/src' + url))
     let response = head.join('\r\n')
     let buffHead = Buffer.from(response)
     let list = Buffer.concat([buffHead, dataFile])
@@ -31,7 +31,7 @@ exports.staticHandle = (type, url, head) => {
   }
   else if (type == 'css') {
     head.splice(2, 0, 'Content-Type: text/css')
-    let dataFile = Buffer.from(fs.readFileSync('../browser/src' + url))
+    let dataFile = Buffer.from(fs.readFileSync('../../browser/src' + url))
     let response = head.join('\r\n')
     let buffHead = Buffer.from(response)
     let list = Buffer.concat([buffHead, dataFile])
@@ -39,7 +39,7 @@ exports.staticHandle = (type, url, head) => {
   }
   else if (type == 'png') {
     head.splice(2, 0, 'Content-Type: image/png')
-    let dataFile = Buffer.from(fs.readFileSync('../browser/src' + url))
+    let dataFile = Buffer.from(fs.readFileSync('../../browser/src' + url))
     let response = head.join('\r\n')
     let buffHead = Buffer.from(response)
     let list = Buffer.concat([buffHead, dataFile])
@@ -47,7 +47,7 @@ exports.staticHandle = (type, url, head) => {
   }
   else if (type == 'jpg') {
     head.splice(2, 0, 'Content-Type: image/jpg')
-    let dataFile = Buffer.from(fs.readFileSync('../browser/src' + url))
+    let dataFile = Buffer.from(fs.readFileSync('../../browser/src' + url))
     let response = head.join('\r\n')
     let buffHead = Buffer.from(response)
     let list = Buffer.concat([buffHead, dataFile])

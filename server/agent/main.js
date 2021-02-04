@@ -3,4 +3,4 @@ const {HOST, PORT , requestHead} = require('./base/config')
 let handler = require('./handler')
 
 
-comm.clientSend(PORT, HOST, requestHead)
+comm.agentConnect(HOST, PORT, requestHead, handler.reponseHandle)
