@@ -1,10 +1,9 @@
 let file = require('./file')
-let comm = require('../base/communication')
+
 
 /**
- * send the file information and download the file from server
- * @param {*} client 
+ * send the file information and download the file from server 
  * @param {*} head 
  * @param {*} fileData 
  */
-exports.downLoadFile = (client, head, fileData) => {}
+exports.downLoadFile = (head, fileData) => {}

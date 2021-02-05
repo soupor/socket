@@ -89,9 +89,8 @@ let app = new Vue({
           this.initPos.x += nodeSec;
         }
         _thisPos = JSON.parse(JSON.stringify(this.initPos));  
-        //引用类型深拷给另一个对象防止数据被覆盖
         this.createNode(_thisPos, this.nodeSize, this.nodeUrl);
-        // console.log(`imgARR:${this.imgArr[1].startPos.x}`)
+        
       }
       window.onload = () => {
         for(let i in this.imgArr) {
@@ -119,12 +118,31 @@ let app = new Vue({
       content.status = status;
       content.ipAdds = ipAdds;
       this.contentArr.push(content);
+    },
+    getNodeInfo() {
+      let xmlhttp = null
+      if(window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest()
+      }
+      else {
+        xmlhttp = new ActiveXObject('Microsoft.XMLHTTP')
+      }
+      console.log('XML: ' + xmlhttp)
+      xmlhttp.onreadystatechange = () => {
+        if((4 == xmlhttp.readyState && 200 == xmlhttp.status)) {
+          let test = xmlhttp.responseText
+          console.log(test)
+        }
+      }
+      xmlhttp.open('GET', '/api/browser/getAgentsInfo', true)
+      xmlhttp.send()
     }
+    
   },
-  
   mounted() {
     this.initNode();
     this.initHTML();
+    this.getNodeInfo();
   },
   watch: {
     contentArr() {

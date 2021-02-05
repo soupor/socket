@@ -1,54 +1,41 @@
 let request = require('./business/request')
-let {httpHead, socketList, delayTime} = require('./base/config')
+let {httpHead, socketList} = require('./base/config')
 let api = require('./business/api')
-let static = require('./business/static')
 
-function requestHandler(socket, data) {  
+function requestHandler(url, socket) {  
  
-  let url = request.requestURL(data)
-  let type = request.requestTYPE(data)
-  console.log('data: ' + data.toString())
+  //Agent connets to the server for agent initialization
+  api.initSocketList(socketList, socket)
 
-  if(url == '/') {      //Handle the root 
-    let res = ''  
-    res = static.rootHandle(httpHead)
-    socket.write(res)
-    httpHead.splice(2, 1)
-    socket.end()
-  }  
-  if(url.indexOf('/static') > -1) {    //Handle the static file
-    let res = ''  
-    res = static.staticHandle(type, url, httpHead)
-    socket.write(res)
-    httpHead.splice(2, 1)
-    socket.end()
-  } 
-  if(url == '/favicon.ico') {    //Handle favicon.ico
-    let res = ''  
-    res = static.faviconHandle(httpHead)
-    socket.write(res)
-    httpHead.splice(2, 1)
-    socket.end()
-  }  
+  //Browser obtains the status and number of all agents
+  api.getAgentsInfo(httphead, socketList)
 
+  //Browser selects the designated agent to communicate
+  api.getAgent(httphead, url, socketList)
 
-  if(url.indexOf('/api/browser/getAgentsInfo') > -1) {}    //Browser obtains the status and number of all agents
-  if(url.indexOf('/api/browser/getAgent') > -1)     //Browser selects the designated agent to communicate
-  if(url.indexOf('/api/browser/upload') > -1) {}     //Browser upload the file
-  if(url.indexOf('/api/browser/ls') > -1) {}    // View all files in the current agent directory   
-  if(url.indexOf('/api/browser/cd') > -1) {}    //Input agent directory   
-  if(url.indexOf('/api/browser/pwd') > -1) {}    //Get the current agent directory    
-  if(url.indexOf('/api/browser/mkdir') > -1) {}    //Create directory   
-  if(url.indexOf('/api/browser/rmdir') > -1) {}    //Delete directory 
-  
-  if(url == '/api/agent') {
-    socket.write('get')
-    socket.setTimeout(60000 * delayTime, () => {
-      console.log(`客户端在${delayTime}分钟内未通信，将断开...`)
-      socket.end()
-    })
-  }             //Agent connets to the server for agent initialization
-  if(url.indexOf('/api/agent/download') > -1) {}     //Agent requests to download the file
+  //Browser upload the file
+  api.sendFileInfo(httphead, url)
+
+  //Browser upload the file
+  api.sendFileInfo(httphead, url)
+
+  //Agent requests to download the file
+  api.sendFile(httpHead, url)
+
+  // View all files in the current agent directory   
+  api.lsHandle(httpHead, url)
+
+  //Input agent directory
+  api.cdHandle(httpHead, url)
+
+  //Get the current agent directory    
+  api.pwdHandle(httpHead, url)
+
+  //Create directory  
+  api.mkdirHandle(httpHead, url)
+ 
+  //Delete directory
+  api.rmdirHandle(httpHead, url)
   
 }
 
