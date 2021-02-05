@@ -3,24 +3,25 @@ let app = new Vue({
   data: {
     ctx: {},
     imgArr: [],   //节点图片信息数组
-    nodeInfo: [
-      {
-        ipAdds: '111.222.333.444',
-        status: '传输中'
-      },
-      {
-        ipAdds: '111.222.333.444',
-        status: '传输完成'
-      },
-      {
-        ipAdds: '111.222.333.444',
-        status: '传输失败'
-      },
-      {
-        ipAdds: '111.222.333.444',
-        status: '离线'
-      },  
-    ],
+    // nodeInfo: [
+    //   {
+    //     ipAdds: '111.222.333.444',
+    //     status: '传输中'
+    //   },
+    //   {
+    //     ipAdds: '111.222.333.444',
+    //     status: '传输完成'
+    //   },
+    //   {
+    //     ipAdds: '111.222.333.444',
+    //     status: '传输失败'
+    //   },
+    //   {
+    //     ipAdds: '111.222.333.444',
+    //     status: '离线'
+    //   },  
+    // ],
+    nodeInfo: [],
     contentArr: [],  //节点页面信息数组
     initPos: {
       x: 0,
@@ -73,7 +74,8 @@ let app = new Vue({
         }
       }
     },
-    initNode() {
+    async initNode() {
+      this.nodeInfo = await this.getNodeInfo()
       const canvas = document.getElementById('myCanvas');
       this.ctx = canvas.getContext('2d');
       let nodeCount = this.nodeInfo.length;
@@ -89,10 +91,13 @@ let app = new Vue({
           this.initPos.x += nodeSec;
         }
         _thisPos = JSON.parse(JSON.stringify(this.initPos));  
+        //引用类型深拷给另一个对象防止数据被覆盖
         this.createNode(_thisPos, this.nodeSize, this.nodeUrl);
-        
+        // console.log(`imgARR:${this.imgArr[1].startPos.x}`)
       }
+      console.log('dd')
       window.onload = () => {
+        console.log('imgArr: ' + this.imgArr)
         for(let i in this.imgArr) {
           if (i !== 0) {
             drawLine(this.imgArr[0], this.imgArr[i], this.ctx)
@@ -119,30 +124,34 @@ let app = new Vue({
       content.ipAdds = ipAdds;
       this.contentArr.push(content);
     },
-    getNodeInfo() {
-      let xmlhttp = null
-      if(window.XMLHttpRequest) {
-        xmlhttp = new XMLHttpRequest()
-      }
-      else {
-        xmlhttp = new ActiveXObject('Microsoft.XMLHTTP')
-      }
-      console.log('XML: ' + xmlhttp)
-      xmlhttp.onreadystatechange = () => {
-        if((4 == xmlhttp.readyState && 200 == xmlhttp.status)) {
-          let test = xmlhttp.responseText
-          console.log(test)
+    async getNodeInfo() {
+      return new Promise((resolve) => {
+        let xmlhttp = null
+        if(window.XMLHttpRequest) {
+          xmlhttp = new XMLHttpRequest()
         }
-      }
-      xmlhttp.open('GET', '/api/browser/getAgentsInfo', true)
-      xmlhttp.send()
+        else {
+          xmlhttp = new ActiveXObject('Microsoft.XMLHTTP')
+        }
+        xmlhttp.onreadystatechange = () => {
+          if((4 == xmlhttp.readyState && 200 == xmlhttp.status)) {
+            let response = JSON.parse(xmlhttp.responseText)
+            console.log(response)
+            resolve(response)
+          }
+        }
+        xmlhttp.open('GET', '/api/browser/getAgentsInfo', true)
+        xmlhttp.send()
+      })
+    },
+    async asyInit() {
+      await this.initNode();
+      this.initHTML();
     }
     
   },
   mounted() {
-    this.initNode();
-    this.initHTML();
-    this.getNodeInfo();
+    this.asyInit()
   },
   watch: {
     contentArr() {
