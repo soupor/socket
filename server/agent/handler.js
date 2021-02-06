@@ -1,33 +1,35 @@
-let controlChannel = require('./business/controlChannel')
-let dataChannel = require('./business/dataChannel')
-let response = require('./business/response')
 
+/**
+ * View all files in the current agent directory   
+ */
+exports.lsHandle = () => {}
 
+/**
+ * Input agent directory 
+ * @param {*} path 
+ */
+exports.cdHandle = (path) => {}
 
-function reponseHandle(data) {   //服务器消息处理
-  let resData = response.responseData(data)
+/**
+ * Get the current agent directory 
+ */
+exports.pwdHandle = () => {}
 
-  //Get new file information and prepare to download
-  dataChannel.downLoadFile(resData)
+/**
+ * Create directory  
+ * @param {*} path 
+ */
+exports.mkdirHandle = (path) => {}
 
-  //View all files in the current agent directory
-  controlChannel.lsHandle(resData)
+/**
+ * Delete directory 
+ * @param {*} path 
+ */
+exports.rmdirHandle = (path) => {}
 
-  //Input agent directory 
-  controlChannel.cdHandle(resData)
-
-  //Get the current agent directory
-  controlChannel.pwdHandle(resData)
-
-  //Create directory
-  controlChannel.mkdirHandle(resData)
-
-  //Delete directory
-  controlChannel.rmdirHandle(resData)
-
-
-}
-
-module.exports = {
-  reponseHandle
-}
+/**
+ * Server sends the information of the new file perpared for downloading
+ * @param {*} fileName 
+ * @param {*} storagePath 
+ */
+exports.newFileInfo = (fileName, storagePath) => {}

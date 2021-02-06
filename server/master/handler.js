@@ -1,44 +1,67 @@
-let request = require('./business/request')
-let {httpHead, socketList} = require('./base/config')
-let api = require('./business/api')
 
-function requestHandler(url, socket) {  
- 
-  //Agent connets to the server for agent initialization
-  api.initSocketList(socketList, socket)
+/**
+ * Brower gets all of agents information from server
+ */
+exports.getAgentsInfo = () => {} 
 
-  //Browser obtains the status and number of all agents
-  api.getAgentsInfo(httphead, socketList)
+/**
+ * Browser selects the designated agent to communicate
+ * @param {*} agentAddr 
+ */
+exports.getAgent = (agentAddr) => {}  
 
-  //Browser selects the designated agent to communicate
-  api.getAgent(httphead, url, socketList)
+/**
+ * Browser uploads the file to the server in the default directory of the server
+ * @param {*} agentAddr
+ * @param {*} File 
+ * @param {the storage path of file in the agent} storagePath 
+ */
+exports.upload = (agentAddr, File, storagePath) => {}
 
-  //Browser upload the file
-  api.sendFileInfo(httphead, url)
+/**
+ * View all files in the current agent directory  
+ * @param {*} agentAddr
+ */
+exports.ls = (agentAddr) => {} 
 
-  //Browser upload the file
-  api.sendFileInfo(httphead, url)
+/**
+ * Input agent directory  
+ * @param {*} agentAddr
+ * @param {*} path 
+ */
+exports.cd = (agentAddr, path) => {}
 
-  //Agent requests to download the file
-  api.sendFile(httpHead, url)
+/**
+ * Get the current agent directory  
+ * @param {*} agentAddr
+ */
+exports.pwd = (agentAddr) => {}
 
-  // View all files in the current agent directory   
-  api.lsHandle(httpHead, url)
+/**
+ * Create directory in current directory
+ * @param {*} agentAddr 
+ * @param {*} path 
+ */
+exports.mkdirHandle = (agentAddr, path) => {}
 
-  //Input agent directory
-  api.cdHandle(httpHead, url)
+/**
+ * Delete directory in current directory
+ * @param {*} agentAddr 
+ * @param {*} path 
+ */
+exports.rmdirHandle = (agentAddr, path) => {}
 
-  //Get the current agent directory    
-  api.pwdHandle(httpHead, url)
+/**
+ * Agent connets to the server  
+ */
+exports.agent = () => {} 
 
-  //Create directory  
-  api.mkdirHandle(httpHead, url)
- 
-  //Delete directory
-  api.rmdirHandle(httpHead, url)
-  
-}
+/**
+ * Agent sends the file information to download the file
+ * @param {*} fileName  
+ */
+exports.downLoad = (fileName) => {} 
 
-module.exports = {
-  requestHandler
-}
+
+
+
