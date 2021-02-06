@@ -1,3 +1,13 @@
+# 2021-2-6   declare apis
+---
+declare all of apis to the server and agent
+
+Modify file
+  /server/agent/handler.js
+  /server/master/handler.js
+
+
+
 # 2021-2-5   modify the handle 
 ---
 modify the handle of server and agent.
