@@ -1,3 +1,11 @@
+# 2021-2-6   declare browser apis
+---
+declare getAgentsInfo api and upload api
+
+Modify file
+  /server/master/handler.js
+
+
 # 2021-2-6   declare apis
 ---
 declare all of apis to the server and agent
