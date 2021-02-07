@@ -4,12 +4,11 @@
  * @return {string} agentsInfo
  */
 exports.getAgentsInfo = () => {
-  let agentsInfo = JSON.stringify([
-    {
-      address: '',
-      status: 'Online'
-    }
-  ])
+  let agentJSON = {
+    address: '',
+    status: 'Online'
+  }
+  let agentsInfo = JSON.stringify([agentJSON,])
   return agentsInfo
 } 
 
