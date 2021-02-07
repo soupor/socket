@@ -1,7 +1,7 @@
 
 /**
  * Brower gets all of agents information from server
- * @return {string} agentsInfoJSON
+ * @return {Object} agentsInfoJSON
  * 
     {
       code: 200,
@@ -40,7 +40,7 @@ exports.getAgentsInfo = () => {
  * @param {*} fileSize
  * @param {*} fileTyped
  * @param {*} fileData
- * @return {string} resultJSON
+ * @return {Object} resultJSON
    {
      code: 101
      message: "StoragePath error.can not find the agent IP"
