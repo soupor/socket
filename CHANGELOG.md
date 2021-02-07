@@ -1,6 +1,7 @@
-# 2021-2-6   declare browser apis
+# 2021-2-7   define return structure
 ---
-declare getAgentsInfo api and upload api
+declare getAgentsInfo api and upload api.
+define the return structure
 
 Modify file
   /server/master/handler.js

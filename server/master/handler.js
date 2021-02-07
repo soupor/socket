@@ -1,15 +1,35 @@
 
 /**
  * Brower gets all of agents information from server
- * @return {string} agentsInfo
+ * @return {string} agentsInfoJSON
+ * 
+    {
+      code: 200,
+      message: null
+      data: {
+        "agentsInfo":[{
+          "address": "111.222.333.441",
+          "status": "Online"
+        },
+        {
+          "address": "111.222.333.442",
+          "status": "Online"
+        },
+        {
+          "address": "111.222.333.443",
+          "status": "Online"
+        },
+        {
+          "address": "111.222.333.444",
+          "status": "Online"
+        }]
+      }  
+    }
+ * 
  */
 exports.getAgentsInfo = () => {
-  let agentJSON = {
-    address: '',
-    status: 'Online'
-  }
-  let agentsInfo = JSON.stringify([agentJSON,])
-  return agentsInfo
+  
+  return agentsInfoJSON
 } 
 
 /**
@@ -20,10 +40,15 @@ exports.getAgentsInfo = () => {
  * @param {*} fileSize
  * @param {*} fileTyped
  * @param {*} fileData
- * @return {string} result 'success/reason for failure'
+ * @return {string} resultJSON
+   {
+     code: 101
+     message: "StoragePath error.can not find the agent IP"
+   }
  */
 exports.upload = (agentAddr, storagePath, fileName, fileSize, fileType, fileData) => {
-  return result
+  
+  return resultJSON
 }
 
 
